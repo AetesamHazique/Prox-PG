@@ -7,59 +7,34 @@
 This code is the MATLAB implementation of our proposed Prox-PG model. Our Prox-PG model achieves **state-of-the-art** performance in image deconvolution under Poisson-Gaussian Noise against other competing methods
 > **Abstract:** *Traditional image restoration methods, such as denoising and deconvolution, are designed to improve the spatial resolution of images that are blurred and noisy. Fluorescence microscopy is a field where images are particularly affected by blur—stemming from the microscope’s diffraction limit—and by both measurement and photon noise. As a result, these images can greatly benefit from advanced restoration techniques. In this work, we propose an image deconvolution approach specifically tailored to recover spatial detail in noisy and blurred fluorescence microscopy images. Our evaluation is carried out within a proximal iterative framework that explicitly models the mixed Poisson-Gaussian noise characteristic of these images. Specifically, we employ a variant of the Primal Dual Hybrid Gradient method to derive a closed-form solution to the associated optimization problem. We validate our approach through experiments on both synthetic and real fluorescence microscopy datasets, with both qualitative and quantitative results demonstrating the effectiveness of our proposed method. **Code Availability:** https://github.com/AetesamHazique/Prox-PG.git.* 
 >
-> <p align="center">
-> <img width="800" src="figs/git.png">
-> </p>
 
 |                          *img_092 (x4)*                           |                          *img_098 (x4)*                           |                          *HR*                           |                          *LR*                           |*SwinIR*                           |*ART (ours)*                           |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |:----------------------------------------------------------: |:----------------------------------------------------------: |
 | <img src="figs/Resize_ComL_img_092_HR_x4.png"  height=110 width=135> | <img src="figs/Resize_ComL_img_098_HR_x4.png"  height=110 width=135> | <img src="figs/ComS_img_092_HR_x4.png" width=101 height=51> <img src="figs/ComS_img_098_HR_x4.png" width=101 height=51> | <img src="figs/ComS_img_092_Bicubic_x4.png" width=101 height=51> <img src="figs/ComS_img_098_Bicubic_x4.png" width=101 height=51> | <img src="figs/ComS_img_092_SwinIR_x4.png" width=101 height=51> <img src="figs/ComS_img_098_SwinIR_x4.png" width=101 height=51> |<img src="figs/ComS_img_092_ART_x4.png" width=101 height=51> <img src="figs/ComS_img_098_ART_x4.png" width=101 height=51> |
 
 ## Requirements
-- python 3.8
-- pyTorch >= 1.8.0
-- NVIDIA GPU + [CUDA](https://developer.nvidia.com/cuda-downloads)
+- [MATLAB](https://matlab.mathworks.com/) (version>=2019)
 
 ### Installation
 ```bash
-git clone https://github.com/gladzhang/ART.git
+git clone https://github.com/AetesamHazique/Prox-PG.git
 cd ART
-pip install -r requirements.txt
-python setup.py develop
 ```
 
-## TODO
-
-* [x] Testing on Image SR
-* [x] Testing on Color Image Denoising
-* [x] Testing on Real Image Denoising 
-* [x] Testing on JPEG compression artifact reduction
-* [x] Training
-* [ ] More tasks
 ## Contents
 
-1. [Models](#Models)
-1. [Datasets](#Datasets)
-1. [Training](#training)
-1. [Testing](#Testing)
-1. [Results](#Results)
+1. [Algorithm](#algo)
+2. [Dataset](#dataset)
+1. [Ablation Study](#Abl)
+1. [Optimisation of Hyperparameters](#opt)
+1. [Experimental Results](#Testing)
 1. [Citation](#citation)
 1. [Acknowledgement](#Acknowledgement)
 
 ---
-## Models
+## Algorithm
 
-|  Task   | Method  | Params (M) | FLOPs (G) | Dataset  | PSNR  |  SSIM  |                          Model Zoo                           |             
-| :-----: | :------ | :--------: | :-------: | :------: | :---: | :----: | :----------------------------------------------------------: | 
-|   SR    | ART-S   |   11.87    |   392   | Urban100 | 27.54 | 0.8261 | [Google Drive](https://drive.google.com/drive/folders/1Sre6vmY0aujYxvF7s7LVZtTg1Lp2AT9v?usp=sharing) |
-|   SR    | ART   |   16.55   |   782   | Urban100 | 27.77 | 0.8321 | [Google Drive](https://drive.google.com/drive/folders/1oqemJJ7r7SfJA8f9YQlVKWFjk2vNAqyd?usp=sharing) | 
-|   Color-DN  | ART |   16.15    |  465    | Urban100 | 30.19 | 0.8912 | [Google Drive](https://drive.google.com/drive/folders/1Ei7U7IqLg4qawMxeB3jXHKjUzyfqj7Jz?usp=sharing) | 
-| Real-DN | ART     |   25.70   |  73     |   SIDD   | 39.96 | 0.9600 | [Google Drive](https://drive.google.com/drive/folders/1txjHu5c0vw0WaHk8m1qS_NjaAHUUGD8S?usp=sharing) | 
-|   CAR   | ART    |   16.14   | 469    |  LIVE1   | 29.89 | 0.8300 | [Google Drive](https://drive.google.com/drive/folders/1ZZKE2fCjs_oacp57lBAzfi2gtanUQipb?usp=sharing) |
-
-- We provide the performance on Urban100 (x4, SR), Urban100 (level=50, Color-DN) LIVE1 (q=10, CAR), and SIDD (Real-DN). We use the input 160 × 160 to calculate FLOPS.
-- Download  the models and put them into the folder `experiments/pretrained_models`  . Go to the folder to find details of directory structure.
-
+<img src="https://latex.codecogs.com/gif.latex?O_t=\text { Onset event at time bin } t " /> 
 ## Datasets
 
 
