@@ -2,7 +2,7 @@
 clear
 close all
 clc
-addpath('../utils','../data','../solutions');
+addpath('../utils','../data','../solutions','../function','../operator');
 
 % Use this file as well: YRCPIR-EX9796-Cyan.tif
 psffile = 'data/YRCPIR-EX9796-Yellow-PSF.tif'; 
