@@ -41,18 +41,15 @@ cd ART
 
 ## Datasets
 
+Shepp Logan Phantom Image can be created from: https://in.mathworks.com/help/images/ref/phantom.html
 
-Used training and testing sets can be downloaded as follows:
-| Task                                          |                         Training Set                         |                         Testing Set                          |                        Visual Results                        |
-| :-------------------------------------------- | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| image SR                                      | [DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/) (800 training images) +  [Flickr2K](https://cv.snu.ac.kr/research/EDSR/Flickr2K.tar) (2650 images) [complete dataset DF2K [download](https://drive.google.com/file/d/1TubDkirxl4qAWelfOnpwaSKoj3KLAIG4/view?usp=share_link)] | Set5 + Set14 + BSD100 + Urban100 + Manga109 [[download](https://drive.google.com/file/d/1n-7pmwjP0isZBK7w3tx2y8CTastlABx1/view?usp=sharing)] | [Google Drive](https://drive.google.com/drive/folders/12ecR677Hty1_WkbnKCOWaI1v4sNpVHsT?usp=share_link) |
-| gaussian color image denoising                          | [DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/) (800 training images) +  [Flickr2K](https://cv.snu.ac.kr/research/EDSR/Flickr2K.tar) (2650 images) + [BSD500](http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_bsds500.tgz) (400 training&testing images) + [WED](http://ivc.uwaterloo.ca/database/WaterlooExploration/exploration_database_and_code.rar)(4744 images) [complete dataset DFWB_RGB [download](https://drive.google.com/file/d/1jPgG_URDQZ4kyXaMMXJ8AZ8jEErCdKuM/view?usp=share_link)] | CBSD68 + Kodak24 + McMaster + Urban100  [[download](https://drive.google.com/file/d/1baLpOjNlTCNbREUDAZf9Lso6YCeUOQER/view?usp=sharing)] | [Google Drive](https://drive.google.com/drive/folders/1H9nx0Gd6kfneh6anKaKzAgIn7G3djSSx?usp=share_link) |
-| real image denoising                          | [SIDD](https://www.eecs.yorku.ca/~kamel/sidd/) (320 training images) [complete dataset SIDD [download](https://drive.google.com/drive/folders/1L_8ig1P71ikzf8PHGs60V6dZ2xoCixaC?usp=share_link)] | SIDD + DND [[download](https://drive.google.com/file/d/1Vuu0uhm_-PAG-5UPI0bPIaEjSfrSvsTO/view?usp=share_link)] | [Google Drive](https://drive.google.com/drive/folders/1k9EUqsqlyBMPBPzvy5nmhc1F_M_nbNo8?usp=share_link) |
-| grayscale JPEG compression artifact reduction | [DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/) (800 training images) +  [Flickr2K](https://cv.snu.ac.kr/research/EDSR/Flickr2K.tar) (2650 images) + [BSD500](http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_bsds500.tgz) (400 training&testing images) + [WED](http://ivc.uwaterloo.ca/database/WaterlooExploration/exploration_database_and_code.rar)(4744 images) [complete dataset DFWB_CAR [download](https://drive.google.com/file/d/1IASyJRsX9CKBE0i5iSJMelIr_a6U5Qcd/view?usp=share_link)] | Classic5 + LIVE1 [[download](https://drive.google.com/file/d/1KJ1ArYxRubRAWP1VgONf6rly1DwiRnzZ/view?usp=sharing)] | [Google Drive](https://drive.google.com/drive/folders/1RA143yluYZAcWOzxeT7pE_olusEN99i4?usp=share_link) |
+Real Fluorescence Microscopy image available at: https://images.yeastrc.org/imagerepo/viewExperiment.do?id=9796
 
+## Steps to Generate Point Spread Function (PSF) for Fluorescence Imaging
 
-Download  training and testing datasets and put them into the folder `datasets/`. Go to the folder to find details of directory structure.
-
+1. Install [ImageJ](https://imagej.net/ij/download.html) and [DeconvolutionLab](https://bigwww.epfl.ch/algorithms/psfgenerator/).
+2. Add the jarfile associated with `DeconvolutionLab` in the `/plugins` folder of installed `ImageJ` 
+3. Generate PSF using Born and Wolf Model. Parameters for PSF description (for example, image spatial dimension, number of 3D layers, excitation/emission wavelength, pixel size, numerical aperture of the objective lens) can be used from those given in real FM dataset link (given above).
 ## Training
 ### Train on SR
 1. Please download the corresponding training datasets and put them in the folder `datasets/DF2K`. Download the testing datasets and put them in the folder `datasets/SR`.
@@ -187,64 +184,40 @@ Download  training and testing datasets and put them into the folder `datasets/`
 
 ## Results
 
-We provide the results on image SR, color image denoising, real image denoising, and JPEG compression artifact reduction here. More results can be found in the main paper. The visual results of ART can be downloaded [here](https://drive.google.com/drive/folders/1b92XHwxuvBLOAiHAjWe-VFKN01hQUiO_?usp=sharing). 
+We provide the some experimental results present in the paper. For reproducibility, more results can be downloaded from [here](https://drive.google.com/drive/folders/1b92XHwxuvBLOAiHAjWe-VFKN01hQUiO_?usp=sharing). 
 
 <details>
-<summary>Image SR (click to expan)</summary>
-
-- Results of Table 2 in the main paper
+<summary>Problem Validation</summary>
 
 <p align="center">
-  <img width="900" src="figs/SR.png">
-</p>
-
-- Visual results
-
-<p align="center">
-  <img width="900" src="figs/Visual_SR_1.png">
-</p>
-
-<p align="center">
-  <img width="900" src="figs/Visual_SR_2.png">
+  <img width="700" src="figures/prob-val.png">
 </p>
 
 </details>
 
 <details>
-<summary>Color Image Denoising(click to expan)</summary>
-
-- Results of Table 4 in the main paper
+<summary>Optimization of Hyper-parameters</summary>
 
 <p align="center">
-  <img width="900" src="figs/ColorDN.png">
-</p>
-
-- Visual results
-
-<p align="center">
-  <img width="900" src="figs/Visual_DN.png">
+  <img width="700" src="figures/opt-hyperParam.png">
 </p>
 
 </details>
 
 <details>
-<summary>Real Image Denoising (click to expan)</summary>
-
-- Results of Table 7 in the main paper
+<summary>Visual Results on Shepp-Logan Phantom Image</summary>
 
 <p align="center">
-  <img width="900" src="figs/RealDN.png">
+  <img width="700" src="figures/exp-syn.png">
 </p>
 
 </details>
 
 <details>
-<summary>JPEG Compression Artifact Reduction (click to expan)</summary>
-
-- Results of Table 5 in the main paper
-
+<summary>Quantitative Assessment of Shepp-Logan Phantom Image</summary>
+    
 <p align="center">
-  <img width="900" src="figs/CAR.png">
+  <img width="800" src="figures/exp-metrics.png">
 </p>
 
 </details>
@@ -252,6 +225,7 @@ We provide the results on image SR, color image denoising, real image denoising,
 ## Citation
 
 If you find the code helpful in your resarch or work, please cite the following paper(s).
+<!--
 ```
 @inproceedings{zhang2023accurate,
   title={Accurate Image Restoration with Attention Retractable Transformer},
@@ -259,9 +233,8 @@ If you find the code helpful in your resarch or work, please cite the following 
   booktitle={ICLR},
   year={2023}
 }
-```
+``` -->
 
 ## Acknowledgement
 
-This work is released under the Apache 2.0 license.
- The codes are based on [BasicSR](https://github.com/xinntao/BasicSR) and [Restormer](https://github.com/swz30/Restormer). Please also follow their licenses. Thanks for their awesome works.
+This work was supported by Birla Institute of Technology Mesra (https://bitmesra.ac.in/) under Seed Grant (Ref. No: DRIE/SMS/DRIE-1088/2024-25/5546)
