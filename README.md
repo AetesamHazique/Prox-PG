@@ -49,7 +49,7 @@ Real Fluorescence Microscopy image available at: https://images.yeastrc.org/imag
 
 1. Install [ImageJ](https://imagej.net/ij/download.html) and [DeconvolutionLab](https://bigwww.epfl.ch/algorithms/psfgenerator/).
 2. Add the jarfile associated with `DeconvolutionLab` in the `/plugins` folder of installed `ImageJ` 
-3. Generate PSF using Born and Wolf Model. Parameters for PSF description (for example, image spatial dimension, number of 3D layers, excitation/emission wavelength, pixel size, numerical aperture of the objective lens) can be used from those given in real FM dataset link (given above).
+3. Generate PSF using Born and Wolf Model. Parameters for PSF description (for example, image spatial dimension, number of 3D layers, excitation/emission wavelength, pixel size, numerical aperture of the objective lens) can be used from those given in real FM dataset link (given above). For every channel, the parameters may be different.
 ## Training
 ### Train on SR
 1. Please download the corresponding training datasets and put them in the folder `datasets/DF2K`. Download the testing datasets and put them in the folder `datasets/SR`.
