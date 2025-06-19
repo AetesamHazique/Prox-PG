@@ -1,11 +1,11 @@
 <style>
     .c-compare {
-  --h: 9;
-  --w: 16;
+  --h: 5;
+  --w: 5;
   --value: 50%;
   position: relative;
-  width: 500px; /* Adjust as needed */
-  aspect-ratio: 16/9;
+  width: 300px; /* Adjust as needed */
+  aspect-ratio: 16/16;
   margin: 2rem auto;
   overflow: hidden;
   background: #222;
