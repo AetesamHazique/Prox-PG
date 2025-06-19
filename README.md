@@ -7,6 +7,7 @@
 This code is the MATLAB implementation of our proposed Prox-PG model. Our Prox-PG model achieves **state-of-the-art** performance in image deconvolution under Poisson-Gaussian Noise against other competing methods
 > **Abstract:** *Traditional image restoration methods, such as denoising and deconvolution, are designed to improve the spatial resolution of images that are blurred and noisy. Fluorescence microscopy is a field where images are particularly affected by blur—stemming from the microscope’s diffraction limit—and by both measurement and photon noise. As a result, these images can greatly benefit from advanced restoration techniques. In this work, we propose an image deconvolution approach specifically tailored to recover spatial detail in noisy and blurred fluorescence microscopy images. Our evaluation is carried out within a proximal iterative framework that explicitly models the mixed Poisson-Gaussian noise characteristic of these images. Specifically, we employ a variant of the Primal Dual Hybrid Gradient method to derive a closed-form solution to the associated optimization problem. We validate our approach through experiments on both synthetic and real fluorescence microscopy datasets, with both qualitative and quantitative results demonstrating the effectiveness of our proposed method. **Code Availability:** https://github.com/AetesamHazique/Prox-PG.git.*
 
+<link rel="stylesheet" href="figures/bc.css">
 <div class="c-compare" style="--value:50%;">
   <img class="c-compare__left" src="figures/YRCPIR-EX9796-Proposed-Composite-twitch-highlight.png" alt="Clean Image" />
   <img class="c-compare__right" src="figures/YRCPIR-EX9796-Noisy-Composite-highlight.png" alt="Noisy Image" />
@@ -19,44 +20,7 @@ This code is the MATLAB implementation of our proposed Prox-PG model. Our Prox-P
     oninput="this.parentNode.style.setProperty('--value', `${this.value}%`)"
   />
 </div>
-<style>
-    .c-compare {
-  --h: 9;
-  --w: 16;
-  --value: 50%;
-  position: relative;
-  width: 500px; /* Adjust as needed */
-  aspect-ratio: 16/9;
-  margin: 2rem auto;
-  overflow: hidden;
-  background: #222;
-}
-.c-compare__left, .c-compare__right {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  top: 0; left: 0;
-}
-.c-compare__left {
-  clip-path: polygon(0 0, var(--value) 0, var(--value) 100%, 0 100%);
-  z-index: 2;
-}
-.c-compare__right {
-  clip-path: polygon(var(--value) 0, 100% 0, 100% 100%, var(--value) 100%);
-  z-index: 1;
-}
-.c-compare__range {
-  position: absolute;
-  width: 100%;
-  bottom: 10px;
-  left: 0;
-  z-index: 3;
-  background: transparent;
-  pointer-events: auto;
-}
-</style>
-    
+  
 ## Requirements
 - [MATLAB](https://matlab.mathworks.com/) (version>=2019)
 
