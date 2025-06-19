@@ -1,0 +1,56 @@
+<svg fill="none" viewBox="0 0 300 300" width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+  <foreignObject width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <div class="c-compare" style="--value:100%;">
+  <img class="c-compare__left" src="F:\Documentation\NCVPRIPG-FM\images\real-data/YRCPIR-EX9796-Noisy-Composite-highlight.png" alt="Clean Image" />
+  <img class="c-compare__right" src="F:\Documentation\NCVPRIPG-FM\images\real-data/YRCPIR-EX9796-Proposed-Composite-twitch-highlight.png" alt="Noisy Image" />
+  <input
+    type="range"
+    class="c-compare__range"
+    min="0"
+    max="100"
+    value="50"
+    oninput="this.parentNode.style.setProperty('--value', `${this.value}%`)"
+  />
+</div>
+
+<style>
+    .c-compare {
+  --h: 5;
+  --w: 5;
+  --value: 50%;
+  position: relative;
+  width: 300px; /* Adjust as needed */
+  aspect-ratio: 16/16;
+  margin: 2rem auto;
+  overflow: hidden;
+  background: #222;
+}
+.c-compare__left, .c-compare__right {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0; left: 0;
+}
+.c-compare__left {
+  clip-path: polygon(0 0, var(--value) 0, var(--value) 100%, 0 100%);
+  z-index: 2;
+}
+.c-compare__right {
+  clip-path: polygon(var(--value) 0, 100% 0, 100% 100%, var(--value) 100%);
+  z-index: 1;
+}
+.c-compare__range {
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
+  left: 0;
+  z-index: 3;
+  background: transparent;
+  pointer-events: auto;
+}
+</style>
+    </div>
+  </foreignObject>
+</svg>
