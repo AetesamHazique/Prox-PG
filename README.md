@@ -5,15 +5,58 @@
 
 ---
 This code is the MATLAB implementation of our proposed Prox-PG model. Our Prox-PG model achieves **state-of-the-art** performance in image deconvolution under Poisson-Gaussian Noise against other competing methods
-> **Abstract:** *Traditional image restoration methods, such as denoising and deconvolution, are designed to improve the spatial resolution of images that are blurred and noisy. Fluorescence microscopy is a field where images are particularly affected by blur—stemming from the microscope’s diffraction limit—and by both measurement and photon noise. As a result, these images can greatly benefit from advanced restoration techniques. In this work, we propose an image deconvolution approach specifically tailored to recover spatial detail in noisy and blurred fluorescence microscopy images. Our evaluation is carried out within a proximal iterative framework that explicitly models the mixed Poisson-Gaussian noise characteristic of these images. Specifically, we employ a variant of the Primal Dual Hybrid Gradient method to derive a closed-form solution to the associated optimization problem. We validate our approach through experiments on both synthetic and real fluorescence microscopy datasets, with both qualitative and quantitative results demonstrating the effectiveness of our proposed method. **Code Availability:** https://github.com/AetesamHazique/Prox-PG.git.* 
->
+> **Abstract:** *Traditional image restoration methods, such as denoising and deconvolution, are designed to improve the spatial resolution of images that are blurred and noisy. Fluorescence microscopy is a field where images are particularly affected by blur—stemming from the microscope’s diffraction limit—and by both measurement and photon noise. As a result, these images can greatly benefit from advanced restoration techniques. In this work, we propose an image deconvolution approach specifically tailored to recover spatial detail in noisy and blurred fluorescence microscopy images. Our evaluation is carried out within a proximal iterative framework that explicitly models the mixed Poisson-Gaussian noise characteristic of these images. Specifically, we employ a variant of the Primal Dual Hybrid Gradient method to derive a closed-form solution to the associated optimization problem. We validate our approach through experiments on both synthetic and real fluorescence microscopy datasets, with both qualitative and quantitative results demonstrating the effectiveness of our proposed method. **Code Availability:** https://github.com/AetesamHazique/Prox-PG.git.*
 
-|                          **Real Data**                           |                          **FISTA**                           |                          *RLTV*                           |                          *GILAM*                           |*Proposed*                           |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |:----------------------------------------------------------:|
-| <img src="figures/YRCPIR-EX9796-Noisy-Composite-highlight.png"  height=110 width=135> | <img src="figures/YRCPIR-EX9796-Composite-FISTA-highlight.png"  height=110 width=135> | <img src="figures/YRCPIR-EX9796-Composite-rltv-highlight.png" height=110 width=135> | <img src="figures/YRCPIR-EX9796-Composite-GILAM-highlight.png" width=135 height=110> | <img src="figures/YRCPIR-EX9796-Proposed-Composite-twitch-highlight.png" width=135 height=110> |
-| <img src="figures/YRCPIR-EX9796-Noisy-Composite-blue.png"  height=130 width=150> | <img src="figures/YRCPIR-EX9796-Composite-FISTA-blue.png"  height=130 width=150> | <img src="figures/YRCPIR-EX9796-Composite-rltv-blue.png" height=130 width=150> | <img src="figures/YRCPIR-EX9796-Composite-GILAM-blue.png" height=130 width=150> | <img src="figures/YRCPIR-EX9796-Proposed-Composite-twitch-blue.png" height=130 width=150> |
-| <img src="figures/YRCPIR-EX9796-Noisy-Composite-green.png"  height=130 width=150> | <img src="figures/YRCPIR-EX9796-Composite-FISTA-green.png"  height=130 width=150> | <img src="figures/YRCPIR-EX9796-Composite-rltv-green.png" height=130 width=150> | <img src="figures/YRCPIR-EX9796-Composite-GILAM-green.png" height=130 width=150> | <img src="figures/YRCPIR-EX9796-Proposed-Composite-twitch-green.png" height=130 width=150> |
-
+<div class="c-compare" style="--value:50%;">
+  <img class="c-compare__left" src="figures/YRCPIR-EX9796-Proposed-Composite-twitch-highlight.png" alt="Clean Image" />
+  <img class="c-compare__right" src="figures/YRCPIR-EX9796-Noisy-Composite-highlight.png" alt="Noisy Image" />
+  <input
+    type="range"
+    class="c-compare__range"
+    min="0"
+    max="100"
+    value="50"
+    oninput="this.parentNode.style.setProperty('--value', `${this.value}%`)"
+  />
+</div>
+<style>
+    .c-compare {
+  --h: 9;
+  --w: 16;
+  --value: 50%;
+  position: relative;
+  width: 500px; /* Adjust as needed */
+  aspect-ratio: 16/9;
+  margin: 2rem auto;
+  overflow: hidden;
+  background: #222;
+}
+.c-compare__left, .c-compare__right {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0; left: 0;
+}
+.c-compare__left {
+  clip-path: polygon(0 0, var(--value) 0, var(--value) 100%, 0 100%);
+  z-index: 2;
+}
+.c-compare__right {
+  clip-path: polygon(var(--value) 0, 100% 0, 100% 100%, var(--value) 100%);
+  z-index: 1;
+}
+.c-compare__range {
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
+  left: 0;
+  z-index: 3;
+  background: transparent;
+  pointer-events: auto;
+}
+</style>
+    
 ## Requirements
 - [MATLAB](https://matlab.mathworks.com/) (version>=2019)
 
@@ -27,8 +70,6 @@ cd ART
 
 1. [Algorithm](#algo)
 2. [Dataset](#dataset)
-1. [Ablation Study](#Abl)
-1. [Optimisation of Hyperparameters](#opt)
 1. [Experimental Results](#Testing)
 1. [Citation](#citation)
 1. [Acknowledgement](#Acknowledgement)
@@ -219,6 +260,17 @@ We provide the some experimental results present in the paper. For reproducibili
 <p align="center">
   <img width="800" src="figures/exp-metrics.png">
 </p>
+
+</details>
+<details>
+<summary>Results on Real Fluorescence Microscopy Image</summary>
+
+|                          **Real Data**                           |                          **FISTA**                           |                          *RLTV*                           |                          *GILAM*                           |*Proposed*                           |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |:----------------------------------------------------------:|
+| <img src="figures/YRCPIR-EX9796-Noisy-Composite-highlight.png"  height=110 width=135> | <img src="figures/YRCPIR-EX9796-Composite-FISTA-highlight.png"  height=110 width=135> | <img src="figures/YRCPIR-EX9796-Composite-rltv-highlight.png" height=110 width=135> | <img src="figures/YRCPIR-EX9796-Composite-GILAM-highlight.png" width=135 height=110> | <img src="figures/YRCPIR-EX9796-Proposed-Composite-twitch-highlight.png" width=135 height=110> |
+| <img src="figures/YRCPIR-EX9796-Noisy-Composite-blue.png"  height=130 width=150> | <img src="figures/YRCPIR-EX9796-Composite-FISTA-blue.png"  height=130 width=150> | <img src="figures/YRCPIR-EX9796-Composite-rltv-blue.png" height=130 width=150> | <img src="figures/YRCPIR-EX9796-Composite-GILAM-blue.png" height=130 width=150> | <img src="figures/YRCPIR-EX9796-Proposed-Composite-twitch-blue.png" height=130 width=150> |
+| <img src="figures/YRCPIR-EX9796-Noisy-Composite-green.png"  height=130 width=150> | <img src="figures/YRCPIR-EX9796-Composite-FISTA-green.png"  height=130 width=150> | <img src="figures/YRCPIR-EX9796-Composite-rltv-green.png" height=130 width=150> | <img src="figures/YRCPIR-EX9796-Composite-GILAM-green.png" height=130 width=150> | <img src="figures/YRCPIR-EX9796-Proposed-Composite-twitch-green.png" height=130 width=150> |
+
 
 </details>
 
