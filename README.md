@@ -1,5 +1,5 @@
 # A Proximal Approach to Image Deconvolution under Mixed Poisson-Gaussian Noise
-[Hazique Aetesam](http://yulunzhang.com/), "A Proximal Approach to Image Deconvolution under Mixed Poisson-Gaussian Noise", NCVPRIPG, 2025 
+[Hazique Aetesam](https://bitmesra.ac.in/Show_profile/734D546B2B77457A42364C73305A696C7874515763413D3D), "A Proximal Approach to Image Deconvolution under Mixed Poisson-Gaussian Noise", NCVPRIPG, 2025 
 
 <!-- [[paper](https://openreview.net/pdf?id=IloMJ5rqfnt)] [[arXiv](https://arxiv.org/abs/2210.01427)] [[supplementary material](https://openreview.net/attachment?id=IloMJ5rqfnt&name=supplementary_material)] [[visual results](https://drive.google.com/drive/folders/1b92XHwxuvBLOAiHAjWe-VFKN01hQUiO_?usp=sharing)] [[pretrained models](https://drive.google.com/drive/folders/1Sn1sl577Lwancj5SuQtRJk-GwUTRw7lK?usp=share_link)] -->
 
